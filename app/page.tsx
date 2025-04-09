@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import {
@@ -32,14 +32,11 @@ import { SkillBadge } from "@/components/skill-badge"
 import { ProjectCard } from "@/components/project-card"
 import { SkillsMarquee } from "@/components/skills-marquee"
 import { CursorParticles } from "@/components/cursor-particles"
-import { RotatingBorder } from "@/components/rotating-border"
 
 export default function Home() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { scrollYProgress } = useScroll()
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1])
 
   // Refs for scroll navigation
   const aboutRef = useRef(null)
@@ -60,42 +57,22 @@ export default function Home() {
   }
 
   // Skills
-  const frontendSkills = ["JavaScript", "TypeScript", "React", "Next.js", "HTML", "CSS", "Tailwind CSS"]
-
-  const backendSkills = ["Node.js", "Express", "Python", "Django", "Java", "Spring Boot", "GraphQL"]
-
-  const databaseSkills = ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Firebase"]
-
-  const devopsSkills = ["Git", "CI/CD", "Docker", "Kubernetes", "AWS", "Azure"]
-
+  const frontendSkills = ["HTML", "CSS", "JavaScript", "React"]
+  const backendSkills = ["PHP", "Java", "C#", "C", "Python"]
+  const databaseSkills = ["MySQL"]
+  
   // All skills for marquee
   const allSkills = [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
+    "MySQL",
+    "PHP",
     "HTML",
     "CSS",
-    "Tailwind CSS",
     "Java",
-    "PHP",
+    "JavaScript",
     "C#",
+    "C",
+    "React",
     "Python",
-    "Django",
-    "Express",
-    "GraphQL",
-    "MongoDB",
-    "PostgreSQL",
-    "MySQL",
-    "Redis",
-    "Firebase",
-    "Git",
-    "CI/CD",
-    "Docker",
-    "Kubernetes",
-    "AWS",
-    "Azure",
   ]
 
   // Featured projects
@@ -104,7 +81,7 @@ export default function Home() {
       title: "Project Management App",
       description: "A full-stack project management application with real-time updates and team collaboration features",
       image: "/placeholder.svg?height=200&width=400",
-      tags: ["React", "Node.js", "MongoDB", "WebSockets"],
+      tags: ["React", "PHP", "MySQL"],
       demoUrl: "#",
       codeUrl: "#",
     },
@@ -112,66 +89,18 @@ export default function Home() {
       title: "E-commerce Platform",
       description: "Scalable e-commerce solution with payment processing, inventory management, and analytics",
       image: "/placeholder.svg?height=200&width=400",
-      tags: ["React", "Redux", "Node.js", "Stripe"],
+      tags: ["React", "JavaScript", "PHP"],
       demoUrl: "#",
       codeUrl: "#",
-    },
-    {
-      title: "AI Image Generator",
-      description: "AI-powered image generation tool using deep learning models to create unique artwork",
-      image: "/placeholder.svg?height=200&width=400",
-      tags: ["Python", "TensorFlow", "AI", "Deep Learning"],
-      demoUrl: "#",
-      codeUrl: "#",
-    },
-    {
-      title: "Blockchain Voting System",
-      description: "Secure and transparent voting system built on blockchain technology",
-      image: "/placeholder.svg?height=200&width=400",
-      tags: ["Blockchain", "Ethereum", "Web3", "Smart Contracts"],
-      demoUrl: "#",
-      codeUrl: "#",
-    },
-    {
-      title: "Mobile Fitness Tracker",
-      description: "Cross-platform mobile app for tracking workouts, nutrition, and health metrics",
-      image: "/placeholder.svg?height=200&width=400",
-      tags: ["React Native", "Firebase", "Health", "Mobile"],
-      demoUrl: "#",
-      codeUrl: "#",
-    },
-    {
-      title: "Data Visualization Dashboard",
-      description: "Interactive dashboard for visualizing complex datasets with customizable charts and filters",
-      image: "/placeholder.svg?height=200&width=400",
-      tags: ["D3.js", "React", "Data Visualization", "Dashboard"],
-      demoUrl: "#",
-      codeUrl: "#",
-    },
+    }
   ]
 
   // Work experience
   const experiences = [
     {
-      title: "Senior Software Engineer",
-      company: "Tech Innovators Inc.",
-      period: "2021 - Present",
-      description:
-        "Leading development of scalable web applications using React, Node.js, and AWS. Mentoring junior developers and implementing best practices for code quality and performance.",
-      skills: ["React", "Node.js", "AWS", "TypeScript"],
-    },
-    {
-      title: "Software Engineer",
-      company: "Digital Solutions Ltd.",
-      period: "2018 - 2021",
-      description:
-        "Developed and maintained multiple web applications using JavaScript, React, and Python. Collaborated with cross-functional teams to deliver high-quality software solutions.",
-      skills: ["JavaScript", "React", "Python", "Django"],
-    },
-    {
       title: "Junior Developer",
       company: "WebTech Startup",
-      period: "2016 - 2018",
+      period: "2023 - 2024",
       description:
         "Assisted in the development of web applications using HTML, CSS, JavaScript, and PHP. Participated in code reviews and implemented UI improvements based on user feedback.",
       skills: ["HTML", "CSS", "JavaScript", "PHP"],
@@ -181,15 +110,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-200 transition-colors duration-300">
       <CursorParticles />
-      {/* Fixed header with blur effect on scroll */}
-      <motion.header
-        style={{ opacity: headerOpacity }}
+      {/* Fixed header */}
+      <header
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300"
       >
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
             <Link href="/" className="font-semibold text-lg flex items-center gap-2">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6B2D5C] to-[#00D4FF] dark:from-[#6B2D5C] dark:to-[#00D4FF]">
                 Ujwal Shrestha
               </span>
             </Link>
@@ -244,7 +172,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile menu */}
       <AnimatePresence>
@@ -335,104 +263,126 @@ export default function Home() {
 
       <main className="pt-16">
         {/* Hero section */}
-        <section className="py-16 md:py-24 container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-6"
-            >
-              <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors">
-                Full Stack Developer
-              </Badge>
+        <section className="py-16 md:py-24 relative overflow-hidden">
+          {/* Background Video */}
+          <video
+            className="absolute inset-0 w-full h-full object-cover z-0"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/videobackground.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                Hi, I'm{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400">
-                  Ujwal Shrestha
-                </span>
-              </h1>
+          {/* Overlay to improve text readability */}
+          <div className="absolute inset-0 bg-black/30 z-10"></div>
 
-              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
-                Crafting elegant digital experiences with modern technologies. I specialize in building efficient,
-                scalable, and user-friendly applications that solve real-world problems and deliver exceptional user
-                experiences.
-              </p>
+          <div className="relative z-20 container mx-auto px-4 md:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              {/* Text Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="space-y-6 flex flex-col items-center lg:items-start text-center lg:text-left"
+              >
+                <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors">
+                  Software Engineer
+                </Badge>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+  Hi, I'm{" "}
+  <span className="premium-sparkle-wrapper">
+    <span>
+      <span>
+        <span>
+          <span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B7EB] to-[#c18cf0] dark:from-[#00B7EB] dark:to-[#8B00FF]">
+              Ujwal Shrestha
+            </span>
+          </span>
+        </span>
+      </span>
+    </span>
+  </span>
+</h1>
+                <p className="text-xl text-white max-w-md leading-relaxed">
+                  Crafting elegant digital experiences with modern technologies. I specialize in building efficient,
+                  scalable, and user-friendly applications that solve real-world problems and deliver exceptional user
+                  experiences.
+                </p>
 
-              <div className="flex flex-wrap gap-3">
-                <Button className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                  <Link href="#contact" className="flex items-center gap-2">
-                    <Mail className="h-4 w-4" />
-                    <span>Get in touch</span>
-                  </Link>
-                </Button>
+                <div className="flex flex-wrap gap-3">
+                  <Button className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                    <Link href="#contact" className="flex items-center gap-2">
+                      <Mail className="h-4 w-4" />
+                      <span>Get in touch</span>
+                    </Link>
+                  </Button>
 
-                <Button
-                  variant="outline"
-                  className="border-gray-300 dark:border-gray-700 hover:border-blue-500 hover:text-blue-500 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-105 hover:shadow-md"
-                >
-                  <Link href="#projects" className="flex items-center gap-2">
-                    <Code className="h-4 w-4" />
-                    <span>View projects</span>
-                  </Link>
-                </Button>
-              </div>
-            </motion.div>
+                  <Button
+                    variant="outline"
+                    className="border-gray-300 dark:border-gray-700 hover:border-blue-500 hover:text-blue-500 dark:hover:border-blue-400 dark:hover:text-blue-400 transition-all duration-300 transform hover:scale-105 hover:shadow-md"
+                  >
+                    <Link href="#projects" className="flex items-center gap-2">
+                      <Code className="h-4 w-4" />
+                      <span>View projects</span>
+                    </Link>
+                  </Button>
+                </div>
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] group">
-                {/* Replace FireBorder with RotatingBorder */}
-                <RotatingBorder />
+              {/* Avatar Section */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="relative z-10 flex justify-center lg:justify-end"
+              >
+                <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] glow-border">
+                  {/* Apply group and hover effects directly to the avatar wrapper */}
+                  <motion.div
+                    className="w-full h-full rounded-full overflow-hidden border-8 border-white dark:border-gray-800 relative z-10 group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Avatar className="w-full h-full bg-gray-100 dark:bg-gray-900">
+                      <AvatarImage src="/ujwalprofile.jpg" alt="Ujwal Shrestha" />
+                      <AvatarFallback className="bg-gradient-to-r from-blue-600 to-violet-600 text-white text-4xl">
+                        US
+                      </AvatarFallback>
+                    </Avatar>
 
-                {/* Profile image with a white border */}
-                <motion.div
-                  className="w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 relative z-10"
-                  whileHover={{ rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-            <Avatar className="w-full h-full bg-gray-100 dark:bg-gray-900">
-  <AvatarImage src="/ujwalprofile.jpg" alt="Ujwal Shrestha" />
-  <AvatarFallback className="bg-gradient-to-r from-blue-600 to-violet-600 text-white text-4xl">
-    US
-  </AvatarFallback>
-</Avatar>
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/70 to-violet-600/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-white text-center p-4"
+                      >
+                        <p className="text-xl font-bold">Ujwal Shrestha</p>
+                        <p className="text-sm">Software Engineer</p>
+                      </motion.div>
+                    </div>
+                  </motion.div>
 
-
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/70 to-violet-600/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-white text-center p-4"
-                    >
-                      <p className="text-xl font-bold">Ujwal Shrestha</p>
-                      <p className="text-sm">Software Engineer</p>
-                    </motion.div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-950 rounded-full p-2 border border-gray-200 dark:border-gray-800 shadow-lg"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 flex items-center justify-center text-white text-xl font-bold">
-                    7+
-                  </div>
-                  <span className="absolute -bottom-6 right-0 text-xs font-medium whitespace-nowrap">
-                    Years Experience
-                  </span>
-                </motion.div>
-              </div>
-            </motion.div>
+                  <motion.div
+                    className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-950 rounded-full p-2 thin-white-border shadow-md"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                  >
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 flex items-center justify-center text-white text-xl font-bold">
+                      2+
+                    </div>
+                    <span className="absolute -bottom-6 right-0 text-xs font-medium whitespace-nowrap text-white dark:text-white">
+                      Years Experience
+                    </span>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -456,32 +406,31 @@ export default function Home() {
 
               <div className="prose prose-blue dark:prose-invert max-w-none">
                 <p className="text-lg leading-relaxed">
-                  Hello! I'm <span className="font-semibold text-blue-600 dark:text-blue-400">Ujwal Shrestha</span>, a
-                  passionate software engineer with expertise in building web applications and services. I specialize in
-                  full-stack development, with a focus on creating scalable and maintainable solutions that deliver
-                  exceptional user experiences.
+                  Hello! I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6B2D5C] to-[#00D4FF] dark:from-[#6B2D5C] dark:to-[#00D4FF]">
+                    Ujwal Shrestha
+                  </span>, a
+                  passionate junior level software engineer with expertise in building web applications. I specialize in
+                  creating user-friendly solutions that deliver great user experiences.
                 </p>
 
                 <p className="leading-relaxed">
-                  With a strong foundation in computer science and years of industry experience, I've worked on various
-                  projects ranging from small business applications to large-scale enterprise systems. I believe in
-                  writing clean, efficient code and staying current with emerging technologies.
+                  With a foundation in computer science and some industry experience, I've worked on various
+                  projects ranging from small business applications to personal projects. I believe in
+                  writing clean, efficient code and continuously learning new technologies.
                 </p>
 
                 <p className="leading-relaxed">
                   My technical expertise includes{" "}
                   <span className="font-semibold text-blue-600 dark:text-blue-400">JavaScript</span>,{" "}
-                  <span className="font-semibold text-blue-600 dark:text-blue-400">TypeScript</span>,{" "}
                   <span className="font-semibold text-blue-600 dark:text-blue-400">React</span>,{" "}
-                  <span className="font-semibold text-blue-600 dark:text-blue-400">Node.js</span>, and various other
-                  modern web technologies. I'm passionate about creating intuitive user interfaces and robust backend
-                  systems that work seamlessly together.
+                  <span className="font-semibold text-blue-600 dark:text-blue-400">PHP</span>, and{" "}
+                  <span className="font-semibold text-blue-600 dark:text-blue-400">MySQL</span>, along with other
+                  technologies like HTML, CSS, Java, C#, C, and Python. I'm passionate about creating intuitive user interfaces and functional backend systems.
                 </p>
 
                 <p className="leading-relaxed">
-                  When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
-                  or sharing my knowledge through technical articles and mentoring. I'm passionate about building a more
-                  inclusive tech community and helping others grow in their careers.
+                  When I'm not coding, you can find me exploring new technologies, working on personal projects,
+                  or learning more about software development. I'm eager to grow my skills and contribute to meaningful projects.
                 </p>
               </div>
 
@@ -499,7 +448,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-lg font-semibold mb-2">Problem Solver</h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    I enjoy tackling complex challenges and finding elegant solutions through creative thinking and
+                    I enjoy tackling challenges and finding solutions through creative thinking and
                     analytical approaches.
                   </p>
                 </motion.div>
@@ -624,11 +573,10 @@ export default function Home() {
               </div>
 
               <Tabs defaultValue="frontend" className="max-w-3xl mx-auto">
-                <TabsList className="grid grid-cols-4 mb-8">
+                <TabsList className="grid grid-cols-3 mb-8">
                   <TabsTrigger value="frontend">Frontend</TabsTrigger>
                   <TabsTrigger value="backend">Backend</TabsTrigger>
                   <TabsTrigger value="database">Database</TabsTrigger>
-                  <TabsTrigger value="devops">DevOps</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="frontend" className="space-y-6">
@@ -649,9 +597,7 @@ export default function Home() {
                   <Card className="border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4">
                     <h3 className="text-lg font-semibold mb-2">Frontend Development</h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      I specialize in building responsive, performant, and accessible user interfaces using modern
-                      JavaScript frameworks. My expertise includes component-based architecture, state management, and
-                      optimizing for performance.
+                      I build responsive and user-friendly interfaces using HTML, CSS, JavaScript, and React. I focus on creating clean and efficient UI components.
                     </p>
                   </Card>
                 </TabsContent>
@@ -674,9 +620,7 @@ export default function Home() {
                   <Card className="border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4">
                     <h3 className="text-lg font-semibold mb-2">Backend Development</h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      I develop robust and scalable server-side applications with a focus on API design, performance,
-                      and security. My experience includes RESTful APIs, microservices architecture, and real-time data
-                      processing.
+                      I develop server-side applications using PHP, Java, C#, C, and Python, focusing on functionality and performance.
                     </p>
                   </Card>
                 </TabsContent>
@@ -697,36 +641,9 @@ export default function Home() {
                   </div>
 
                   <Card className="border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4">
-                    <h3 className="text-lg font-semibold mb-2">Database & Cloud</h3>
+                    <h3 className="text-lg font-semibold mb-2">Database</h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      I work with both SQL and NoSQL databases, designing efficient data models and optimizing queries
-                      for performance. My cloud experience includes deploying and managing applications on various cloud
-                      platforms with a focus on scalability and reliability.
-                    </p>
-                  </Card>
-                </TabsContent>
-
-                <TabsContent value="devops" className="space-y-6">
-                  <div className="flex flex-wrap gap-2">
-                    {devopsSkills.map((skill, index) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.2, delay: index * 0.05 }}
-                      >
-                        <SkillBadge name={skill} />
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  <Card className="border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4">
-                    <h3 className="text-lg font-semibold mb-2">DevOps & CI/CD</h3>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      I implement automated CI/CD pipelines and infrastructure as code to streamline development
-                      workflows. My experience includes containerization, orchestration, and monitoring solutions for
-                      production environments.
+                      I work with MySQL to design and manage databases, ensuring efficient data storage and retrieval.
                     </p>
                   </Card>
                 </TabsContent>
@@ -827,7 +744,7 @@ export default function Home() {
                       asChild
                       className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white transition-all duration-300 transform hover:scale-105"
                     >
-                      <Link href="mailto:ujwal.shrestha@example.com">ujwal.shrestha@example.com</Link>
+                      <Link href="mailto:Ujwolstha712@gmail.com">Ujwolstha712@gmail.com</Link>
                     </Button>
                   </div>
                 </motion.div>
@@ -852,7 +769,7 @@ export default function Home() {
                       asChild
                       className="bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-700 hover:to-blue-700 text-white transition-all duration-300 transform hover:scale-105"
                     >
-                      <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                      <Link href="https://www.linkedin.com/in/ujwal-shrestha-374757199/" target="_blank" rel="noopener noreferrer">
                         View LinkedIn Profile
                       </Link>
                     </Button>
@@ -977,4 +894,3 @@ export default function Home() {
     </div>
   )
 }
-

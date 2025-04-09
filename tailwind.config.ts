@@ -59,6 +59,13 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      borderWidth: {
+        "0.5": "0.5px",
+
+      },
+      boxShadow: {
+        "glow-border": "0 0 20px 5px rgba(59, 130, 246, 0.7), 0 0 30px 10px rgba(124, 58, 237, 0.3)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -103,4 +110,3 @@ const config = {
 } satisfies Config
 
 export default config
-

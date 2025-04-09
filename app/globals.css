@@ -48,6 +48,9 @@
     --ring: 224.3 76.3% 48%;
   }
 }
+.thin-white-border{
+  border: 0.5px solid white;
+}
 
 @layer base {
   * {
@@ -206,3 +209,304 @@
   list-style-type: decimal;
 }
 
+/* Glowing Border Animation */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.7), 
+      0 0 20px rgba(255, 255, 255, 0.5), 
+      0 0 40px rgba(255, 255, 255, 0.3), 
+      0 0 60px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgb(255, 255, 255), 
+      0 0 40px rgba(255, 255, 255, 0.8), 
+      0 0 80px rgba(255, 255, 255, 0.6), 
+      0 0 120px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.7), 
+      0 0 20px rgba(255, 255, 255, 0.5), 
+      0 0 40px rgba(255, 255, 255, 0.3), 
+      0 0 60px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.glow-border {
+  position: relative;
+  border-radius: 50%;
+  animation: glowPulse 2s ease-in-out infinite; /* Pulsing glow effect, 2s per cycle */
+}
+
+/* Container for the premium sparkle effect */
+.premium-sparkle-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Pulsing sparkle animation */
+@keyframes premiumSparkle {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.3) rotate(0deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1) rotate(45deg);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.3) rotate(90deg);
+  }
+}
+
+/* Base styles for sparkles */
+.premium-sparkle-wrapper::before,
+.premium-sparkle-wrapper::after,
+.premium-sparkle-wrapper span::before,
+.premium-sparkle-wrapper span::after,
+.premium-sparkle-wrapper span:nth-child(1)::before,
+.premium-sparkle-wrapper span:nth-child(1)::after,
+.premium-sparkle-wrapper span:nth-child(2)::before,
+.premium-sparkle-wrapper span:nth-child(2)::after,
+.premium-sparkle-wrapper span:nth-child(3)::before,
+.premium-sparkle-wrapper span:nth-child(3)::after,
+.premium-sparkle-wrapper span:nth-child(4)::before,
+.premium-sparkle-wrapper span:nth-child(4)::after,
+.premium-sparkle-wrapper span:nth-child(5)::before,
+.premium-sparkle-wrapper span:nth-child(5)::after {
+  content: "";
+  position: absolute;
+  width: 6px; /* Default size for sparkles */
+  height: 6px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9) 20%,
+    rgba(0, 183, 235, 0.5) 60%,
+    rgba(193, 140, 240, 0.2) 100%
+  ); /* Gradient for a diamond-like shine */
+  border-radius: 50%; /* Circular shape */
+  box-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 12px rgba(0, 183, 235, 0.5); /* Glowing effect */
+  animation: premiumSparkle 2.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Dark mode adjustments for sparkles */
+.dark .premium-sparkle-wrapper::before,
+.dark .premium-sparkle-wrapper::after,
+.dark .premium-sparkle-wrapper span::before,
+.dark .premium-sparkle-wrapper span::after,
+.dark .premium-sparkle-wrapper span:nth-child(1)::before,
+.dark .premium-sparkle-wrapper span:nth-child(1)::after,
+.dark .premium-sparkle-wrapper span:nth-child(2)::before,
+.dark .premium-sparkle-wrapper span:nth-child(2)::after,
+.dark .premium-sparkle-wrapper span:nth-child(3)::before,
+.dark .premium-sparkle-wrapper span:nth-child(3)::after,
+.dark .premium-sparkle-wrapper span:nth-child(4)::before,
+.dark .premium-sparkle-wrapper span:nth-child(4)::after,
+.dark .premium-sparkle-wrapper span:nth-child(5)::before,
+.dark .premium-sparkle-wrapper span:nth-child(5)::after {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9) 20%,
+    rgba(0, 183, 235, 0.5) 60%,
+    rgba(139, 0, 255, 0.2) 100%
+  );
+  box-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 12px rgba(139, 0, 255, 0.5);
+}
+
+/* Position and size variations for sparkles */
+.premium-sparkle-wrapper::before {
+  top: -5px;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  animation-delay: 0s;
+}
+
+.premium-sparkle-wrapper::after {
+  bottom: -10px;
+  right: 0;
+  width: 5px;
+  height: 5px;
+  animation-delay: 0.2s;
+}
+
+
+
+
+
+.premium-sparkle-wrapper span:nth-child(1)::before {
+  top: -1px;
+  left: 90px;
+  width: 4px;
+  height: 4px;
+  animation-delay: 0.8s;
+}
+
+.premium-sparkle-wrapper span:nth-child(1)::after {
+  bottom: -10px;
+  right: 150px;
+  width: 5px;
+  height: 5px;
+  animation-delay: 1.0s;
+}
+
+
+.premium-sparkle-wrapper span:nth-child(2)::before {
+  top: -35px;
+  left: 20px;
+  width: 6px;
+  height: 6px;
+  animation-delay: 1.2s;
+}
+
+.premium-sparkle-wrapper span:nth-child(2)::after {
+  bottom: -35px;
+  right: 20px;
+  width: 4px;
+  height: 4px;
+  animation-delay: 1.4s;
+}
+
+.premium-sparkle-wrapper span:nth-child(3)::before {
+  top: -15px;
+  right: 80px;
+  width: 5px;
+  height: 5px;
+  animation-delay: 1.6s;
+}
+
+.premium-sparkle-wrapper span:nth-child(3)::after {
+  bottom: -505px;
+  left: 80px;
+  width: 6px;
+  height: 6px;
+  animation-delay: 1.8s;
+}
+
+.premium-sparkle-wrapper span:nth-child(4)::before {
+  top: -40px;
+  left: 50px;
+  width: 7px;
+  height: 7px;
+  animation-delay: 2.0s;
+}
+
+.premium-sparkle-wrapper span:nth-child(4)::before {
+  top: -40px;
+  left: 50px;
+  width: 7px;
+  height: 7px;
+  animation-delay: 2.0s;
+}
+
+.premium-sparkle-wrapper span:nth-child(5)::after {
+  bottom: -40px;
+  right: 50px;
+  width: 4px;
+  height: 4px;
+  animation-delay: 2.2s;
+}
+
+.premium-sparkle-wrapper span:nth-child(5)::before {
+  top: -10px;
+  left: 100px;
+  width: 5px;
+  height: 5px;
+  animation-delay: 2.4s;
+}
+
+.premium-sparkle-wrapper span:nth-child(5)::after {
+  bottom: -10px;
+  right: 100px;
+  width: 6px;
+  height: 6px;
+  animation-delay: 2.6s;
+}
+
+/* Accessibility: Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .premium-sparkle-wrapper::before,
+  .premium-sparkle-wrapper::after,
+  .premium-sparkle-wrapper span::before,
+  .premium-sparkle-wrapper span::after,
+  .premium-sparkle-wrapper span:nth-child(1)::before,
+  .premium-sparkle-wrapper span:nth-child(1)::after,
+  .premium-sparkle-wrapper span:nth-child(2)::before,
+  .premium-sparkle-wrapper span:nth-child(2)::after,
+  .premium-sparkle-wrapper span:nth-child(3)::before,
+  .premium-sparkle-wrapper span:nth-child(3)::after,
+  .premium-sparkle-wrapper span:nth-child(4)::before,
+  .premium-sparkle-wrapper span:nth-child(4)::after,
+  .premium-sparkle-wrapper span:nth-child(5)::before,
+  .premium-sparkle-wrapper span:nth-child(5)::after {
+    animation: none;
+    opacity: 0.4; /* Static sparkles with reduced visibility */
+  }
+}
+
+/* Avatar Shine Effect */
+.shine-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 5;
+  pointer-events: none; /* Prevent shine from blocking hover */
+}
+
+.shine-effect {
+  position: absolute;
+  top: -30%;
+  left: -60%;
+  width: 40%; /* Smaller shine width */
+  height: 160%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-15deg);
+  animation: gentle-shine 8s infinite; /* Slower animation */
+  opacity: 0.7;
+}
+
+@keyframes gentle-shine {
+  0% { left: -60%; opacity: 0.7; }
+  50% { left: 120%; opacity: 0.4; } /* Fade out slightly in middle */
+  100% { left: 120%; opacity: 0.7; }
+}
+
+/* Dark Mode Adjustment */
+.dark .shine-effect {
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Hide shine on hover */
+.avatar:hover .shine-effect {
+  animation: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Ensure text remains visible */
+.premium-sparkle-wrapper {
+  pointer-events: none;
+}
+
+.premium-sparkle-wrapper > span {
+  position: relative;
+  z-index: 30;
+}
