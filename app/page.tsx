@@ -851,7 +851,7 @@ export default function Home() {
 
               <motion.div whileHover={{ scale: 1.2 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
                 <Link
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/ujwal-shrestha-374757199/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -863,7 +863,7 @@ export default function Home() {
 
               <motion.div whileHover={{ scale: 1.2 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
                 <Link
-                  href="https://twitter.com"
+                  href="https://twitter.com/ujwal12z"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
