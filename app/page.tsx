@@ -38,7 +38,6 @@ export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // Refs for scroll navigation
   const aboutRef = useRef(null)
   const projectsRef = useRef(null)
   const skillsRef = useRef(null)
@@ -56,12 +55,9 @@ export default function Home() {
     }
   }
 
-  // Skills
   const frontendSkills = ["HTML", "CSS", "JavaScript", "React"]
   const backendSkills = ["PHP", "Java", "C#", "C", "Python"]
   const databaseSkills = ["MySQL"]
-  
-  // All skills for marquee
   const allSkills = [
     "MySQL",
     "PHP",
@@ -75,7 +71,6 @@ export default function Home() {
     "Python",
   ]
 
-  // Featured projects
   const projects = [
     {
       title: "Project Management App",
@@ -95,7 +90,6 @@ export default function Home() {
     }
   ]
 
-  // Work experience
   const experiences = [
     {
       title: "Junior Developer",
@@ -110,7 +104,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-200 transition-colors duration-300">
       <CursorParticles />
-      {/* Fixed header */}
       <header
         className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300"
       >
@@ -174,7 +167,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -262,9 +254,7 @@ export default function Home() {
       </AnimatePresence>
 
       <main className="pt-16">
-        {/* Hero section */}
         <section className="py-16 md:py-24 relative overflow-hidden">
-          {/* Background Video */}
           <video
             className="absolute inset-0 w-full h-full object-cover z-0"
             autoPlay
@@ -276,12 +266,10 @@ export default function Home() {
             Your browser does not support the video tag.
           </video>
 
-          {/* Overlay to improve text readability */}
           <div className="absolute inset-0 bg-black/30 z-10"></div>
 
           <div className="relative z-20 container mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              {/* Text Section */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -292,21 +280,21 @@ export default function Home() {
                   Software Engineer
                 </Badge>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-  Hi, I'm{" "}
-  <span className="premium-sparkle-wrapper">
-    <span>
-      <span>
-        <span>
-          <span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B7EB] to-[#c18cf0] dark:from-[#00B7EB] dark:to-[#8B00FF]">
-              Ujwal Shrestha
-            </span>
-          </span>
-        </span>
-      </span>
-    </span>
-  </span>
-</h1>
+                  Hi, I'm{" "}
+                  <span className="premium-sparkle-wrapper">
+                    <span>
+                      <span>
+                        <span>
+                          <span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B7EB] to-[#c18cf0] dark:from-[#00B7EB] dark:to-[#8B00FF]">
+                              Ujwal Shrestha
+                            </span>
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                  </span>
+                </h1>
                 <p className="text-xl text-white max-w-md leading-relaxed">
                   Crafting elegant digital experiences with modern technologies. I specialize in building efficient,
                   scalable, and user-friendly applications that solve real-world problems and deliver exceptional user
@@ -333,15 +321,13 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Avatar Section */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="relative z-10 flex justify-center lg:justify-end"
               >
-                <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] glow-border">
-                  {/* Apply group and hover effects directly to the avatar wrapper */}
+                <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] glow-border shine-container">
                   <motion.div
                     className="w-full h-full rounded-full overflow-hidden border-8 border-white dark:border-gray-800 relative z-10 group"
                     whileHover={{ scale: 1.05 }}
@@ -353,14 +339,15 @@ export default function Home() {
                         US
                       </AvatarFallback>
                     </Avatar>
-
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/70 to-violet-600/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="shine-overlay"></div>
+                    <div className="sparkle sparkle-top-left"></div>
+                    <div className="sparkle sparkle-top-right"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/70 to-violet-600/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="text-white text-center p-4"
+                        className="text-white text-center p-4 flex flex-col items-center justify-center h-full w-full"
                       >
                         <p className="text-xl font-bold">Ujwal Shrestha</p>
                         <p className="text-sm">Software Engineer</p>
@@ -368,15 +355,16 @@ export default function Home() {
                     </div>
                   </motion.div>
 
+                  {/* Badge with higher z-index and adjusted positioning */}
                   <motion.div
-                    className="absolute -bottom-4 -right-4 bg-white dark:bg-gray-950 rounded-full p-2 thin-white-border shadow-md"
+                    className="absolute bottom-[-40px] right-[-40px] bg-white dark:bg-gray-950 rounded-full p-2 thin-white-border shadow-md z-[60]"
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 15 }}
                   >
                     <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-600 to-violet-600 flex items-center justify-center text-white text-xl font-bold">
                       2+
                     </div>
-                    <span className="absolute -bottom-6 right-0 text-xs font-medium whitespace-nowrap text-white dark:text-white">
+                    <span className="absolute bottom-[-23px] left-[-10px] right-0 text-xs font-medium whitespace-nowrap text-white text-center">
                       Years Experience
                     </span>
                   </motion.div>
@@ -386,7 +374,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* About section */}
         <section
           ref={aboutRef}
           className="py-16 bg-gradient-to-b from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border-y border-gray-200 dark:border-gray-800 transition-colors"
@@ -425,7 +412,7 @@ export default function Home() {
                   <span className="font-semibold text-blue-600 dark:text-blue-400">React</span>,{" "}
                   <span className="font-semibold text-blue-600 dark:text-blue-400">PHP</span>, and{" "}
                   <span className="font-semibold text-blue-600 dark:text-blue-400">MySQL</span>, along with other
-                  technologies like HTML, CSS, Java, C#, C, and Python. I'm passionate about creating intuitive user interfaces and functional backend systems.
+                  technologies like HTML, CSS, Java, BlockChain, C#, C, and Python. I'm passionate about creating intuitive user interfaces and functional backend systems.
                 </p>
 
                 <p className="leading-relaxed">
@@ -493,7 +480,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects section */}
         <section
           ref={projectsRef}
           className="py-16 container mx-auto px-4 md:px-6 bg-gradient-to-b from-white to-blue-50 dark:from-gray-950 dark:to-blue-950/30"
@@ -551,7 +537,6 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Skills section */}
         <section
           ref={skillsRef}
           className="py-16 bg-gradient-to-b from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border-y border-gray-200 dark:border-gray-800 transition-colors"
@@ -652,7 +637,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Experience section */}
         <section
           ref={experienceRef}
           className="py-16 container mx-auto px-4 md:px-6 bg-gradient-to-b from-white to-blue-50 dark:from-gray-950 dark:to-blue-950/30"
@@ -705,7 +689,6 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Contact section */}
         <section
           ref={contactRef}
           className="py-16 bg-gradient-to-b from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border-t border-gray-200 dark:border-gray-800 transition-colors"
