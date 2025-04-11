@@ -336,7 +336,7 @@ export default function Home() {
                     transition={{ duration: 0.3 }}
                   >
                     <Avatar className="w-full h-full bg-gray-100 dark:bg-gray-900">
-                      <AvatarImage src="/ujwalprofile.jpg" alt="Ujwal Shrestha" />
+                      <AvatarImage src="/ujwalprofile.jpg" alt="Ujwal Shrestha" loading="lazy"  />
                       <AvatarFallback className="bg-gradient-to-r from-blue-600 to-violet-600 text-white text-4xl">
                         US
                       </AvatarFallback>
